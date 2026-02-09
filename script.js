@@ -1,18 +1,40 @@
-body { display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f0f2f5; font-family: sans-serif; transition: background-color 0.3s; }
-.container { text-align: center; background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); position: relative; overflow: hidden; }
+let count = 0;
+const counterDisplay = document.getElementById('counter');
+const clickBtn = document.getElementById('clickBtn');
+const resetBtn = document.getElementById('resetBtn');
+const body = document.body;
+const msg = document.getElementById('message');
 
-#counter { font-size: 4rem; margin: 1rem 0; color: #007bff; transition: transform 0.2s; }
+clickBtn.addEventListener('click', () => {
+    count++;
+    counterDisplay.innerText = count;
 
-/* 100回ごとのアニメーションクラス */
-.celebrate { animation: bounce 0.5s ease infinite alternate; color: #ff4757 !important; }
-.flash { background-color: #ffeaa7 !important; }
+    // 100回ごとの判定
+    if (count % 100 === 0 && count !== 0) {
+        triggerCelebration();
+    } else {
+        // 101回目などでアニメーションを解除
+        counterDisplay.classList.remove('celebrate');
+        body.classList.remove('flash');
+        msg.innerText = "";
+    }
+});
 
-@keyframes bounce {
-    from { transform: scale(1); }
-    to { transform: scale(1.3); }
+function triggerCelebration() {
+    counterDisplay.classList.add('celebrate');
+    body.classList.add('flash');
+    msg.innerText = "🎉 100回達成！おめでとう！ 🎉";
+    
+    // 3秒後にフラッシュだけ戻す
+    setTimeout(() => {
+        body.classList.remove('flash');
+    }, 500);
 }
 
-button { padding: 10px 20px; font-size: 1rem; cursor: pointer; border: none; border-radius: 5px; margin: 5px; color: white; }
-#clickBtn { background-color: #007bff; }
-#resetBtn { background-color: #6c757d; }
-#message { height: 20px; color: #ff4757; font-weight: bold; margin-top: 10px; }
+resetBtn.addEventListener('click', () => {
+    count = 0;
+    counterDisplay.innerText = count;
+    counterDisplay.classList.remove('celebrate');
+    body.classList.remove('flash');
+    msg.innerText = "";
+});
