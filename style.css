@@ -1,0 +1,46 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f2f5;
+    font-family: sans-serif;
+}
+
+.container {
+    text-align: center;
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+#counter {
+    font-size: 4rem;
+    margin: 1rem 0;
+    color: #007bff;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+#clickBtn {
+    background-color: #007bff;
+    color: white;
+}
+
+#clickBtn:active {
+    transform: scale(0.95);
+}
+
+#resetBtn {
+    background-color: #6c757d;
+    color: white;
+}
